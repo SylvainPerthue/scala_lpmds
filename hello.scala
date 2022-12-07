@@ -44,8 +44,21 @@ object Hello
     lettre.map(X => (X, X.length)).foreach(println)
     }
 
+    def exo06()=
+    {
+        val suite : List[Int] = List(1,1,2,3,2,4,5)
+        val Gbsuite = suite.groupBy(X => X)
+        Gbsuite.map(X=> (X._1,X._2.sum)).foreach(println)
+    }
+
+ def exo07()=
+    {
+        val suite = List(("A", 4),("B", 5),("C", 5),("A", 5),("C", 3))
+        val Gbsuite = suite.groupBy(X=>X._2).mapValues(X=>x.map(X=>X._2).sum).foreach(println)
+    }
+
     def main(args: Array[String]) ={
-        exo05()
+        exo07()
         }
 
   
