@@ -54,11 +54,27 @@ object Hello
  def exo07()=
     {
         val suite = List(("A", 4),("B", 5),("C", 5),("A", 5),("C", 3))
-        val Gbsuite = suite.groupBy(X=>X._2).mapValues(X=>x.map(X=>X._2).sum).foreach(println)
+        val Gbsuite = suite.groupBy(X=>X._1).mapValues(X=>X.map(X=>X._2).sum).toList /* Tri ordre decroissant */
+        Gbsuite.sortWith(_._2 > _._2).filter(_._2 > 6).foreach(println) /* Tri somme > 6 */
     }
 
+def get-studentById(p_id:Int, etudiants: List[(Int, String)]):(Int,String) = 
+{
+    return etudiants.filter(_._1==p_id)(0)
+}
+
+def exo08()=
+    {
+        val etudiants = List ((1,"A"),(2,"B"),(3,"C"))
+        val ues = List((1,"M1"),(2,"M2"),(3,"M3"))
+        val notes = List((1,1,12),(1,2,13),(2,3,14),(2,1,11),(2,2,9),(2,3,13),(3,1,12),(3,2,13))
+
+        /* afficher la moyenne par l'UE des eleves */
+
+
+    }
     def main(args: Array[String]) ={
-        exo07()
+        exo08()
         }
 
   
