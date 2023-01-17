@@ -58,24 +58,35 @@ object Hello
         Gbsuite.sortWith(_._2 > _._2).filter(_._2 > 6).foreach(println) /* Tri somme > 6 */
     }
 
-def get-studentById(p_id:Int, etudiants: List[(Int, String)]):(Int,String) = 
-{
-    return etudiants.filter(_._1==p_id)(0)
-}
+def avg(xs: List[Int])=xs.sum.toDouble/xs.length.toDouble
+    def get_studentById(p_id:Int, etudiants:List[(Int,String)]):(Int,String)={
+        return etudiants.filter(_._1==p_id)(0)
+    }
 
 def exo08()=
     {
         val etudiants = List ((1,"A"),(2,"B"),(3,"C"))
         val ues = List((1,"M1"),(2,"M2"),(3,"M3"))
-        val notes = List((1,1,12),(1,2,13),(2,3,14),(2,1,11),(2,2,9),(2,3,13),(3,1,12),(3,2,13))
+        val notes = List((1,1,12),(1,2,13),(1,3,14),(2,1,11),(2,2,9),(2,3,13),(3,1,12),(3,2,13))
+        
+        // Création de la map associant chaque étudiant à sa liste de notes
+        val mapNotesEtudiant = notes.groupBy(_._1)
 
-        /* afficher la moyenne par l'UE des eleves */
+        // Calcul de la moyenne de chaque étudiant
+        println(etudiants.map { case (id, nom) =>
+            val notesEtudiant = mapNotesEtudiant(id)
+            val sommeNotes = notesEtudiant.map(_._3).sum
+            val nbNotes = notesEtudiant.length
 
-
-    }
+            (nom, sommeNotes.toDouble / nbNotes)
+            })
+            println(get_studentById(1,ues)._2)
+            notes.groupBy(_._1).foreach(println)
+            notes.groupBy(_._1).map(x => (x._1, avg(x._2.map(y => y._3)))).foreach(println)
+        }
+    
     def main(args: Array[String]) ={
         exo08()
         }
 
-  
 }
